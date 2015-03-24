@@ -40,43 +40,10 @@ register_activation_hook( __FILE__, 'gfwa_activation_check' );
  */
 function gfwa_activation_check() {
 
-    $latest = '1.9';
-
-    $theme_info = get_theme_data( TEMPLATEPATH . '/style.css' );
-
-    if ( basename( TEMPLATEPATH ) != 'genesis' ) {
-        deactivate_plugins( plugin_basename( __FILE__ ) ); // Deactivate ourself
-        wp_die( sprintf( __( 'Sorry, you can\'t activate unless you have installed %1$sGenesis%2$s', 'gfwa' ), '<a href="http://designsbynickthegeek.com/go/genesis">', '</a>' ) );
-    }
-
-    $version = gfwa_truncate( $theme_info['Version'], 3 );
-
-    if ( version_compare( $version, $latest, '<' ) ) {
-        deactivate_plugins( plugin_basename( __FILE__ ) ); // Deactivate ourself
-        wp_die( sprintf( __( 'Sorry, you can\'t activate without %1$sGenesis %2$s%3$s or greater', 'gfwa' ), '<a href="http://designsbynickthegeek.com/go/genesis">', $latest, '</a>' ) );
-    }
-}
-
-/**
- *
- * Used to cutoff a string to a set length if it exceeds the specified length
- *
- * @author Nick Croft
- * @since 0.1
- * @version 0.2
- * @param string $str Any string that might need to be shortened
- * @param string $length Any whole integer
- * @return string
- */
-function gfwa_truncate( $str, $length=10 ) {
-
-    if ( strlen( $str ) > $length ) {
-        return substr( $str, 0, $length );
-    } else {
-        $res = $str;
-    }
-
-    return $res;
+    if ( ! defined( 'PARENT_THEME_VERSION' ) || ! version_compare( PARENT_THEME_VERSION, '2.1.0', '>=' ) ) {
+			deactivate_plugins( plugin_basename( __FILE__ ) ); /** Deactivate ourself */
+			wp_die( sprintf( __( 'Sorry, you cannot activate without <a href="%s">Genesis %s</a> or greater', 'genesis-simple-edits' ), 'http://designsbynickthegeek.com/go/genesis', '2.1.0' ) );
+		}
 }
 
 /**
