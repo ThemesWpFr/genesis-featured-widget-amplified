@@ -968,7 +968,7 @@ class Genesis_Featured_Widget_Amplified extends WP_Widget {
 							
 						case 'select' :
 							
-							echo '<p'. $style .'"><label for="'. $this->get_field_id( $fieldID ) .'">'. $args['label'] .' </label>
+							echo '<p'. $style .'><label for="'. $this->get_field_id( $fieldID ) .'">'. $args['label'] .' </label>
 								<select '. $class .'id="'. $this->get_field_id( $fieldID ) .'" name="'. $this->get_field_name( $fieldID ) .'">';
 							
 								foreach( $args['options'] as $value => $label )
