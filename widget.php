@@ -904,7 +904,7 @@ class Genesis_Featured_Widget_Amplified extends WP_Widget {
 							
 							echo '<p'. $style .'><label for="'. $this->get_field_id( $fieldID ) .'">'. $args['label'] .':</label>
 								<select '. $class .' id="'. $this->get_field_id( $fieldID ) .'" name="'. $this->get_field_name( $fieldID ) .'">
-									<option value="" '. selected( '', $instance['page_id'], false ) .'>'. attribute_escape( __( 'Select page', 'gfwa' ) ) .'</option>';
+									<option value="" '. selected( '', $instance['page_id'], false ) .'>'. esc_attr( __( 'Select page', 'gfwa' ) ) .'</option>';
 
 									$pages = get_pages();
 									foreach ( $pages as $page ) 
